@@ -1,0 +1,25 @@
+{
+  "compilerOptions": {
+    "allowSyntheticDefaultImports": true,
+    "jsx": "react",
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitAny": false,
+    "noImplicitReturns": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "target": "ESNEXT"
+  },
+  "exclude": [
+    "**/__fixtures__/**/*",
+    "**/__mocks__/**/*",
+    "**/dist",
+    "**/node_modules",
+    "cypress",
+    "examples"
+  ]
+}

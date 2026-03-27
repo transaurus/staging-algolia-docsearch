@@ -1,0 +1,99 @@
+.DocSearch-Button {
+  align-items: center;
+  border: 1px solid var(--docsearch-subtle-color);
+  border-radius: .5rem;
+  background-color: var(--docsearch-search-button-background);
+  color: var(--docsearch-search-button-text-color);
+  cursor: pointer;
+  display: flex;
+  all: unset;
+  height: 36px;
+  justify-content: space-between;
+  padding: 0 8px;
+  user-select: none;
+}
+
+.DocSearch-Button-Container {
+  height: 100%;
+  align-items: center;
+  display: flex;
+}
+
+.DocSearch-Button-Container svg {
+  color: currentColor;
+}
+
+.DocSearch-Search-Icon {
+  color: var(--docsearch-highlight-color);
+  stroke-width: 1.6;
+}
+
+.DocSearch-Back-Icon {
+  color: var(--docsearch-highlight-color);
+  stroke-width: 1.6;
+}
+
+.DocSearch-Button-Placeholder {
+  font-size: 1rem;
+  padding-block: 0;
+  padding-inline: 8px 12px;
+  color: currentColor;
+  display: inline-block;
+  line-height: normal;
+}
+
+.DocSearch-Button-Keys {
+  display: flex;
+  min-width: calc(2 * 20px + 2 * 0.4em);
+}
+
+.DocSearch-Button-Key {
+  align-items: center;
+  background: var(--docsearch-key-background);
+  color: var(--docsearch-key-color);
+  box-shadow: none !important;
+  display: flex;
+  height: 24px;
+  width: 24px;
+  justify-content: center;
+  position: relative;
+  border: 0;
+  font-size: 14px;
+  font-family: system-ui, -apple-system, sans-serif;
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 100ms;
+  border: 1px solid
+    color-mix(in srgb, var(--docsearch-subtle-color) 20%, transparent);
+  border-radius: 4px;
+}
+
+.DocSearch-Button-Key--ctrl {
+  width: 33px;
+}
+
+.DocSearch-Button-Key:first-child {
+  margin-inline-end: 0.4em;
+}
+
+@media (prefers-reduced-motion) {
+  .DocSearch-Button-Key {
+    transition: none;
+  }
+}
+
+.DocSearch-Button-Key--pressed {
+  transform: translateY(1px);
+  box-shadow: var(--docsearch-key-pressed-shadow) !important;
+}
+
+@media (max-width: 768px) {
+  .DocSearch-Button {
+    width: auto;
+  }
+
+  .DocSearch-Button-Keys,
+  .DocSearch-Button-Placeholder {
+    display: none;
+  }
+}

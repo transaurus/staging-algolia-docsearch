@@ -1,0 +1,18 @@
+{
+  "logo.alt": {
+    "message": "DocSearch x Algolia",
+    "description": "The alt text of navbar logo"
+  },
+  "item.label.Documentation": {
+    "message": "Documentation",
+    "description": "Navbar item with label Documentation"
+  },
+  "item.label.Playground": {
+    "message": "Playground",
+    "description": "Navbar item with label Playground"
+  },
+  "item.label.Sign up": {
+    "message": "Sign up",
+    "description": "Navbar item with label Sign up"
+  }
+}

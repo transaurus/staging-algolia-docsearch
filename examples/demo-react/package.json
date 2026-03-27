@@ -1,0 +1,26 @@
+{
+  "name": "@docsearch/react-example",
+  "description": "DocSearch v4 React example",
+  "version": "4.6.2",
+  "private": true,
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@docsearch/core": "workspace:*",
+    "@docsearch/css": "workspace:*",
+    "@docsearch/modal": "workspace:*",
+    "@docsearch/react": "workspace:*",
+    "@docsearch/sidepanel": "workspace:*",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.3.4",
+    "vite": "^6.0.7"
+  }
+}

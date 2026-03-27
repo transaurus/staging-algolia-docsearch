@@ -1,0 +1,34 @@
+{
+  "version.label": {
+    "message": "Legacy (v3.x)",
+    "description": "The label for version v3"
+  },
+  "sidebar.docs.category.Introduction": {
+    "message": "Introduction",
+    "description": "The label for category 'Introduction' in sidebar 'docs'"
+  },
+  "sidebar.docs.category.DocSearch v3": {
+    "message": "DocSearch v3",
+    "description": "The label for category 'DocSearch v3' in sidebar 'docs'"
+  },
+  "sidebar.docs.category.Algolia Crawler": {
+    "message": "Algolia Crawler",
+    "description": "The label for category 'Algolia Crawler' in sidebar 'docs'"
+  },
+  "sidebar.docs.category.Requirements, tips, FAQ": {
+    "message": "Requirements, tips, FAQ",
+    "description": "The label for category 'Requirements, tips, FAQ' in sidebar 'docs'"
+  },
+  "sidebar.docs.category.FAQ": {
+    "message": "FAQ",
+    "description": "The label for category 'FAQ' in sidebar 'docs'"
+  },
+  "sidebar.docs.category.Under the hood": {
+    "message": "Under the hood",
+    "description": "The label for category 'Under the hood' in sidebar 'docs'"
+  },
+  "sidebar.docs.category.Miscellaneous": {
+    "message": "Miscellaneous",
+    "description": "The label for category 'Miscellaneous' in sidebar 'docs'"
+  }
+}

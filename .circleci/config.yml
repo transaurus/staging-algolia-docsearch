@@ -1,0 +1,201 @@
+version: 2.1
+
+aliases:
+  - &restore_yarn_cache
+    name: Restore Yarn cache
+    keys:
+      - yarn-packages-{{ checksum "yarn.lock" }}
+
+  - &save_yarn_cache
+    name: Save Yarn cache
+    key: yarn-packages-{{ checksum "yarn.lock" }}
+    paths:
+      - .yarn/cache
+      - .yarn/unplugged
+
+  - &run_yarn_install
+    name: Install dependencies
+    command: yarn install --immutable
+
+  - &restore_dist_folders
+    name: Restore dist folders
+    command: |
+      set -exu
+
+      mkdir -p packages/docsearch-react/dist
+      mkdir -p packages/docsearch-js/dist
+      mkdir -p packages/docsearch-css/dist
+      mkdir -p packages/docsearch-core/dist
+      mkdir -p packages/docsearch-modal/dist
+      mkdir -p packages/docsearch-sidepanel/dist
+      mkdir -p packages/docsearch-sidepanel-js/dist
+
+      cp -R /tmp/workspace/packages/docsearch-react/dist packages/docsearch-react
+      cp -R /tmp/workspace/packages/docsearch-js/dist packages/docsearch-js
+      cp -R /tmp/workspace/packages/docsearch-css/dist packages/docsearch-css
+      cp -R /tmp/workspace/packages/docsearch-core/dist packages/docsearch-core
+      cp -R /tmp/workspace/packages/docsearch-modal/dist packages/docsearch-modal
+      cp -R /tmp/workspace/packages/docsearch-sidepanel/dist packages/docsearch-sidepanel
+      cp -R /tmp/workspace/packages/docsearch-sidepanel-js/dist packages/docsearch-sidepanel-js
+
+defaults: &defaults
+  working_directory: ~/docsearch
+  docker:
+    - image: cimg/node:22.15.0
+
+cypress: &cypress
+  working_directory: ~/docsearch
+  docker:
+    - image: cypress/browsers:node-22.15.0-chrome-136.0.7103.113-1-ff-138.0.3-edge-136.0.3240.64-1
+      environment:
+        ## this enables colors in the output
+        TERM: xterm
+
+references:
+  workspace_root: &workspace_root /tmp/workspace
+  attach_workspace: &attach_workspace
+    attach_workspace:
+      at: *workspace_root
+
+jobs:
+  build:
+    <<: *defaults
+    steps:
+      - checkout
+      - restore_cache: *restore_yarn_cache
+      - run: *run_yarn_install
+      - save_cache: *save_yarn_cache
+      - run:
+          name: Build and Size
+          command: |
+            yarn run build
+      - run:
+          name: Move dist folders to workspace
+          command: |
+            set -exu
+
+            mkdir -p /tmp/workspace/packages/docsearch-react/dist
+            mkdir -p /tmp/workspace/packages/docsearch-js/dist
+            mkdir -p /tmp/workspace/packages/docsearch-css/dist
+            mkdir -p /tmp/workspace/packages/docsearch-core/dist
+            mkdir -p /tmp/workspace/packages/docsearch-modal/dist
+            mkdir -p /tmp/workspace/packages/docsearch-sidepanel/dist
+            mkdir -p /tmp/workspace/packages/docsearch-sidepanel-js/dist
+
+            cp -R packages/docsearch-react/dist /tmp/workspace/packages/docsearch-react
+            cp -R packages/docsearch-js/dist /tmp/workspace/packages/docsearch-js
+            cp -R packages/docsearch-css/dist /tmp/workspace/packages/docsearch-css
+            cp -R packages/docsearch-core/dist /tmp/workspace/packages/docsearch-core
+            cp -R packages/docsearch-modal/dist /tmp/workspace/packages/docsearch-modal
+            cp -R packages/docsearch-sidepanel/dist /tmp/workspace/packages/docsearch-sidepanel
+            cp -R packages/docsearch-sidepanel-js/dist /tmp/workspace/packages/docsearch-sidepanel-js
+      - persist_to_workspace:
+          root: *workspace_root
+          paths:
+            - packages
+  test_lint:
+    <<: *defaults
+    steps:
+      - checkout
+      - *attach_workspace
+      - restore_cache: *restore_yarn_cache
+      - run: *run_yarn_install
+      - save_cache: *save_yarn_cache
+      - run: *restore_dist_folders
+      - run:
+          name: Linting
+          command: yarn run lint
+  test_types:
+    <<: *defaults
+    steps:
+      - checkout
+      - *attach_workspace
+      - restore_cache: *restore_yarn_cache
+      - run: *run_yarn_install
+      - save_cache: *save_yarn_cache
+      - run: *restore_dist_folders
+      - run:
+          name: Type checking
+          command: yarn run test:types
+  test_size:
+    <<: *defaults
+    steps:
+      - checkout
+      - *attach_workspace
+      - restore_cache: *restore_yarn_cache
+      - run: *run_yarn_install
+      - save_cache: *save_yarn_cache
+      - run: *restore_dist_folders
+      - run:
+          name: Size checking
+          command: yarn run test:size
+  test_unit:
+    <<: *defaults
+    steps:
+      - checkout
+      - *attach_workspace
+      - restore_cache: *restore_yarn_cache
+      - run: *run_yarn_install
+      - save_cache: *save_yarn_cache
+      - run: *restore_dist_folders
+      - run:
+          name: Unit tests
+          command: yarn run test
+  release:
+    <<: *defaults
+    steps:
+      - checkout
+      - *attach_workspace
+      - restore_cache: *restore_yarn_cache
+      - run: *run_yarn_install
+      - save_cache: *save_yarn_cache
+      - run: *restore_dist_folders
+      - run:
+          name: Setup git user
+          command: |
+            git config --global user.email "accounts+algolia-api-client-bot@algolia.com"
+            git config --global user.name "algolia-bot"
+      - run:
+          name: Release if needed
+          command: yarn run shipjs trigger
+  test_cypress:
+    <<: *cypress
+    steps:
+      - checkout
+      - *attach_workspace
+      - restore_cache: *restore_yarn_cache
+      - run: *run_yarn_install
+      - save_cache: *save_yarn_cache
+      - run: *restore_dist_folders
+      - run:
+          name: Cypress test Actions
+          command: yarn run cy:run
+
+workflows:
+  version: 2
+  ci:
+    jobs:
+      - build
+      - test_lint:
+          requires:
+            - build
+      - test_types:
+          requires:
+            - build
+      - test_size:
+          requires:
+            - build
+      - test_unit:
+          requires:
+            - build
+      - test_cypress:
+          requires:
+            - build
+      - release:
+          requires:
+            - build
+          filters:
+            branches:
+              only:
+                - main
+                - /v[0-9]+/

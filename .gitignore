@@ -1,0 +1,33 @@
+# Generated files
+node_modules/
+.DS_Store
+.eslintcache
+*.log
+coverage/
+.cache
+.nx
+scratchpad/
+
+# Bundle build files
+dist/
+
+# Deployment build files
+/website/stories
+
+# IDE
+.vscode/
+.idea
+
+# Environment files
+.env
+
+# Cypress Video and Screenshots output
+cypress/screenshots/
+cypress/videos/
+
+**/.yarn/*
+!**/.yarn/releases
+!**/.yarn/plugins
+!**/.yarn/patches
+
+rollup.config-*.cjs

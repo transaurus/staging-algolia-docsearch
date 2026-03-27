@@ -1,0 +1,24 @@
+{
+  "files": [
+    {
+      "path": "packages/docsearch-css/dist/style.css",
+      "maxSize": "6 kB"
+    },
+    {
+      "path": "packages/docsearch-react/dist/umd/index.js",
+      "maxSize": "115 kB"
+    },
+    {
+      "path": "packages/docsearch-js/dist/umd/index.js",
+      "maxSize": "128 kB"
+    },
+    {
+      "path": "packages/docsearch-core/dist/umd/index.js",
+      "maxSize": "3 kB"
+    },
+    {
+      "path": "packages/docsearch-modal/dist/umd/index.js",
+      "maxSize": "113.5 kB"
+    }
+  ]
+}
