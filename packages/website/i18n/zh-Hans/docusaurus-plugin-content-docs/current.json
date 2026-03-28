@@ -1,0 +1,46 @@
+{
+  "version.label": {
+    "message": "Stable (v4.x)",
+    "description": "The label for version current"
+  },
+  "sidebar.docs.category.Introduction": {
+    "message": "Introduction",
+    "description": "The label for category 'Introduction' in sidebar 'docs'"
+  },
+  "sidebar.docs.category.DocSearch v4": {
+    "message": "DocSearch v4",
+    "description": "The label for category 'DocSearch v4' in sidebar 'docs'"
+  },
+  "sidebar.docs.category.Algolia Ask AI": {
+    "message": "Algolia Ask AI",
+    "description": "The label for category 'Algolia Ask AI' in sidebar 'docs'"
+  },
+  "sidebar.docs.category.Sidepanel": {
+    "message": "Sidepanel",
+    "description": "The label for category 'Sidepanel' in sidebar 'docs'"
+  },
+  "sidebar.docs.category.Algolia Crawler": {
+    "message": "Algolia Crawler",
+    "description": "The label for category 'Algolia Crawler' in sidebar 'docs'"
+  },
+  "sidebar.docs.category.Requirements, tips, FAQ": {
+    "message": "Requirements, tips, FAQ",
+    "description": "The label for category 'Requirements, tips, FAQ' in sidebar 'docs'"
+  },
+  "sidebar.docs.category.FAQ": {
+    "message": "FAQ",
+    "description": "The label for category 'FAQ' in sidebar 'docs'"
+  },
+  "sidebar.docs.category.Under the hood": {
+    "message": "Under the hood",
+    "description": "The label for category 'Under the hood' in sidebar 'docs'"
+  },
+  "sidebar.docs.category.Miscellaneous": {
+    "message": "Miscellaneous",
+    "description": "The label for category 'Miscellaneous' in sidebar 'docs'"
+  },
+  "sidebar.docs.link.Full Documentation": {
+    "message": "Full Documentation",
+    "description": "The label for link 'Full Documentation' in sidebar 'docs', linking to 'https://www.algolia.com/doc/guides/algolia-ai/askai'"
+  }
+}

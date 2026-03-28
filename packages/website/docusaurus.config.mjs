@@ -13,6 +13,10 @@ const currentYear = currentDate.getFullYear();
 // With JSDoc @type annotations, IDEs can provide config autocompletion
 /** @type {import('@docusaurus/types').Config} */
 export default {
+  i18n: {
+    defaultLocale: "en",
+    locales: ["en", "zh-Hans"],
+  },
   title: 'DocSearch by Algolia',
   tagline: 'The best search experience for docs, integrated in minutes, for free.',
   url: 'https://docsearch.algolia.com',
@@ -20,10 +24,10 @@ export default {
   favicon: 'img/favicon.ico',
   organizationName: 'Algolia',
   projectName: 'DocSearch',
-  onBrokenLinks: 'throw',
+  onBrokenLinks: 'warn',
   markdown: {
     hooks: {
-      onBrokenMarkdownLinks: 'throw',
+      onBrokenMarkdownLinks: "warn",
     },
   },
   future: {

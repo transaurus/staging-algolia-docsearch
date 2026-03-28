@@ -1,0 +1,18 @@
+{
+  "version.label": {
+    "message": "Legacy (v1.x - v2.x)",
+    "description": "The label for version legacy"
+  },
+  "sidebar.docs.category.Adding DocSearch to your UI": {
+    "message": "Adding DocSearch to your UI",
+    "description": "The label for category 'Adding DocSearch to your UI' in sidebar 'docs'"
+  },
+  "sidebar.docs.category.Requirements, tips, FAQ": {
+    "message": "Requirements, tips, FAQ",
+    "description": "The label for category 'Requirements, tips, FAQ' in sidebar 'docs'"
+  },
+  "sidebar.docs.category.Under the Hood": {
+    "message": "Under the Hood",
+    "description": "The label for category 'Under the Hood' in sidebar 'docs'"
+  }
+}
